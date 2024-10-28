@@ -33,6 +33,9 @@ class BusinessMessagingSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAwa
         fun setThemeBuilder(theme: ZDTheme) {
             if (theme.isDarkMode) darkThemeBuilder = theme else lightThemeBuilder = theme
         }
+        fun hideLocationSearch(value : Boolean) {
+            ZConfigUtil.hideLocationSearch = value
+        }
     }
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -79,7 +82,6 @@ class BusinessMessagingSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAwa
         val orgId = arguments?.get("orgId") as? String ?: ""
         val appId = arguments?.get("appId") as? String ?: ""
         val domain = arguments?.get("domain") as? String ?: ""
-        settings()
         activity?.let {
             BusinessMessaging.show(it, orgId, appId, domain)
         }
@@ -149,11 +151,6 @@ class BusinessMessagingSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAwa
         val countryCode = arguments?.get("countryCode") as? String ?: Locale.getDefault().country
         val locale = Locale(languageCode, countryCode)
         ZConfigUtil.locale = locale
-    }
-
-    fun settings() {
-//      By default, hideLocationSearch is set to false. To hide the location search on the map, set it to true.
-        ZConfigUtil.hideLocationSearch = false
     }
 
 }
