@@ -25,6 +25,7 @@ class ZDTheme private constructor(
         @ColorInt errorColor: Int,
         @ColorInt containerColor: Int,
         @ColorInt tertiaryBackground: Int,
+        @ColorInt navBarTextColor: Int,
         isDarkMode: Boolean
 ) {
     @ColorInt
@@ -75,6 +76,9 @@ class ZDTheme private constructor(
         private set
     @ColorInt
     var tertiaryBackground: Int = tertiaryBackground
+        private set
+    @ColorInt
+    var navBarTextColor: Int = navBarTextColor
         private set
     var isDarkMode: Boolean = isDarkMode
         private set
@@ -131,6 +135,10 @@ class ZDTheme private constructor(
         @ColorInt
         private var tertiaryBackground: Int =
                 if (!isDarkMode) Color.parseColor("#FFFFFF") else Color.parseColor("#3A3A3C")
+
+        @ColorInt
+        private var navBarTextColor: Int =
+            if (!isDarkMode) Color.parseColor("#FFFFFF") else Color.parseColor("#FFFFFF")
 
         fun setColorPrimary(@ColorInt colorPrimary: Int) = this.apply {
             this.colorPrimary = colorPrimary
@@ -194,6 +202,9 @@ class ZDTheme private constructor(
             this.tertiaryBackground = tertiaryBackground
         }
 
+        fun setNavBarTextColor(@ColorInt navBarTextColor: Int) = this.apply {
+            this.navBarTextColor = navBarTextColor
+        }
 
         fun build() = ZDTheme(
                 colorPrimary = colorPrimary,
@@ -212,7 +223,8 @@ class ZDTheme private constructor(
                 formFieldBorder = formFieldBorder,
                 errorColor = errorColor,
                 containerColor = containerColor,
-                tertiaryBackground = tertiaryBackground
+                tertiaryBackground = tertiaryBackground,
+                navBarTextColor = navBarTextColor
         )
     }
 }

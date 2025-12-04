@@ -25,9 +25,30 @@ public class BusinessMessagingSdkPlugin: NSObject, FlutterPlugin {
                 clearData(arguments: arguments)
          case .setTheme:
                 setTheme(arguments:arguments)
+         case .setAgentTransferOptionVisibility:
+                setAgentTransferOptionVisibility(arguments:arguments)
+         case .setContactInfo:
+                setContactInfo(arguments: arguments)
         default:
           result(FlutterMethodNotImplemented)
         }
+  }
+
+    public func setContactInfo(arguments: [String: Any]?) {
+        let appId = arguments?["appId"] as? String ?? ""
+        let name = arguments?["name"] as? String ?? ""
+        let phone = arguments?["phone"] as? String ?? ""
+        let email = arguments?["email"] as? String ?? ""
+        let additionalInfo = arguments?["additionalInfo"] as? [String: String] ?? [:]
+        if additionalInfo.isEmpty {
+            BusinessMessaging.setContactInfo(appId: appId, name: name, phone: phone, email: email)
+        } else {
+            BusinessMessaging.setContactInfo(appId: appId, name: name, phone: phone, email: email, additionalInfo: additionalInfo)
+        }
+    }
+  public func setAgentTransferOptionVisibility(arguments: [String: Any]?) {
+         guard let isVisible = arguments?["isVisible"] as? Bool else {return}
+         BusinessMessaging.setAgentTransferOptionVisibility(isVisible: isVisible)
   }
 
     public func show(arguments: [String: Any]?){
@@ -41,25 +62,13 @@ public class BusinessMessagingSdkPlugin: NSObject, FlutterPlugin {
 
 
      public func setSessionVariable(arguments: [String: Any]?){
-          guard let appId = arguments?["appId"] as? String, let arguments = arguments?["sessionVariables"] as? [[String:String]] else { return }
-          var sessionVariables: [String: String] = [:]
-          arguments.forEach {
-            if let key = $0["name"], let value = $0["value"] {
-              sessionVariables[key] = value
-            }
-          }
-          BusinessMessaging.setSessionVariables(appId: appId, sessionVariables: sessionVariables)
+          guard let appId = arguments?["appId"] as? String, let arguments = arguments?["sessionVariables"] as? [[String:Any]] else { return }
+          BusinessMessaging.setSessionVariables(appId: appId, sessionVariables: arguments)
      }
 
       public func updateSessionVariable(arguments: [String: Any]?){
-          guard let appId = arguments?["appId"] as? String, let arguments = arguments?["sessionVariables"] as? [[String:String]] else { return }
-          var sessionVariables: [String: String] = [:]
-          arguments.forEach {
-            if let key = $0["name"], let value = $0["value"] {
-              sessionVariables[key] = value
-            }
-          }
-          BusinessMessaging.updateSessionVariables(appId: appId, sessionVariables: sessionVariables)
+          guard let appId = arguments?["appId"] as? String, let arguments = arguments?["sessionVariables"] as? [[String:Any]] else { return }
+          BusinessMessaging.updateSessionVariables(appId: appId, sessionVariables: arguments)
        }
 
        public func enableLog(arguments: [String: Any]?){
@@ -90,6 +99,8 @@ public class BusinessMessagingSdkPlugin: NSObject, FlutterPlugin {
             case enableLog
             case clearData
             case setTheme
+            case setAgentTransferOptionVisibility
+        case setContactInfo
       }
 
 }

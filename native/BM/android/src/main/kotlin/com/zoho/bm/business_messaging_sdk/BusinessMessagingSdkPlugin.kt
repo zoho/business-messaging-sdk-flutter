@@ -53,6 +53,8 @@ class BusinessMessagingSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAwa
             "clearData" -> clearData(arguments)
             "setTheme" -> setTheme(arguments)
             "setLocale" -> setLocale(arguments)
+            "setAgentTransferOptionVisibility" -> setAgentTransferOptionVisibility(arguments)
+            "setContactInfo" -> setContactInfo(arguments)
         }
     }
 
@@ -153,5 +155,22 @@ class BusinessMessagingSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAwa
         ZConfigUtil.locale = locale
     }
 
+    fun setAgentTransferOptionVisibility(arguments: HashMap<String, Any>?){
+        val isVisible = arguments?.get("isVisible") as? Boolean ?: true
+        BusinessMessaging.setAgentTransferOptionVisibility(isVisible)
+    }
+
+    fun setContactInfo(arguments: HashMap<String, Any>?){
+        val appId = arguments?.get("appId") as? String ?: ""
+        val name = arguments?.get("name") as? String ?: ""
+        val phone = arguments?.get("phone") as? String ?: ""
+        val email = arguments?.get("email") as? String ?: ""
+        val additionalInfo = (arguments?.get("additionalInfo") as? HashMap<String, String>) ?: hashMapOf()
+        if (additionalInfo.isNotEmpty()) {
+            BusinessMessaging.setContactInfo(appId, name, phone, email, additionalInfo)
+        } else {
+            BusinessMessaging.setContactInfo(appId, name, phone, email)
+        }
+    }
 }
 

@@ -10,4 +10,6 @@ class BusinessMessagingSdk {
   static Future<void> clearData(String appId) => BusinessMessagingSdkPlatform.instance.clearData(appId);
   static Future<void> setTheme(ZDThemeType type) => BusinessMessagingSdkPlatform.instance.setTheme(type);
   static Future<void> setLocale(Locale locale) => BusinessMessagingSdkPlatform.instance.setLocale(locale.languageCode, locale.countryCode);
+  static Future<void> setAgentTransferOptionVisibility(bool isVisible) =>  BusinessMessagingSdkPlatform.instance.setAgentTransferOptionVisibility(isVisible);
+  static Future<void> setContactInfo(String appId, String name, String phone, String email, { Map<String, String> additionalInfo = const {}}) => BusinessMessagingSdkPlatform.instance.setContactInfo(appId, name, phone, email, additionalInfo);
 }

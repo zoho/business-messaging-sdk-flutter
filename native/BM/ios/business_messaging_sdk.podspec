@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'business_messaging_sdk'
-  s.version          = '1.0.2'
+  s.version          = '1.0.3'
   s.summary          = 'The Business Messaging mobile SDK'
   s.description      = <<-DESC
 The Business Messaging user experience is simple, familiar, and relatable, and has the potential to accelerate the adaptation of instant messaging for effective business communications.
@@ -15,6 +15,6 @@ The Business Messaging user experience is simple, familiar, and relatable, and h
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'BusinessMessagingSDK', '1.3.5'
+  s.dependency 'BusinessMessagingSDK', '1.4.4'
   s.platform = :ios, '13.0'
 end

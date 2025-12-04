@@ -38,5 +38,8 @@ abstract class BusinessMessagingSdkPlatform extends PlatformInterface {
 
   Future<void> setLocale(String languageCode, String? countryCode);
 
+  Future<void> setAgentTransferOptionVisibility(bool isVisible);
+
+  Future<void> setContactInfo(String appId, String name, String phone, String email, Map<String,String> additionalInfo);
 
 }

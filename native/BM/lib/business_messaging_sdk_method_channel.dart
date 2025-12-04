@@ -45,4 +45,14 @@ class MethodChannelBusinessMessagingSdk extends BusinessMessagingSdkPlatform {
     await methodChannel.invokeMethod('setLocale', {"languageCode": languageCode, "countryCode": countryCode,});
   }
 
+  @override
+  Future<void> setAgentTransferOptionVisibility(bool isVisible) async {
+    await methodChannel.invokeMethod('setAgentTransferOptionVisibility', {"isVisible":isVisible});
+  }
+
+  @override
+  Future<void> setContactInfo(String appId, String name, String phone, String email, Map<String, String> additionalInfo) async{
+    await methodChannel.invokeMethod('setContactInfo', {"appId": appId, "name": name, "phone" : phone, "email" : email, "additionalInfo" : additionalInfo});
+  }
+
 }

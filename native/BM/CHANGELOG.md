@@ -1,8 +1,5 @@
-## 1.0.2
+## 1.0.3
 
-### Android
-    - Updated the native SDK version from 1.3.2 to 1.4.0. 
-    - No functional changes were made.
-
-### iOS
-    - Updated build configurations to support Xcode 16, in line with Apple’s latest requirements.
+### Android & iOS
+    - Introduced the Set Contact Info API to allow setting contact information for the Business Messaging SDK.
+    - Added a public API to show or hide the agent transfer button at the bottom of the chat screen.
